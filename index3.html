@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mavron Catalogue</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Garamond', 'Times New Roman', serif;
+            color: #2c3e50;
+            background: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 58, 58, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            color: #d4af37;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            transform: translateY(-2px);
+        }
+        
+        .nav-social {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-social a {
+            color: #d4af37;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+        }
+        
+        .nav-social a:hover {
+            border-color: #d4af37;
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #d4af37;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .page {
+            width: 100%;
+            max-width: 1400px;
+            min-height: 100vh;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 70px;
+        }
+        
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(135deg, #1e3a3a 0%, #2d5555 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            position: relative;
+            padding: 40px 20px;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+            animation: zoomIn 20s infinite alternate;
+        }
+        
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            background: rgba(30, 58, 58, 0.8);
+            animation: fadeInScale 1s ease;
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .cover h1 {
+            font-size: clamp(32px, 8vw, 64px);
+            font-weight: 300;
+            letter-spacing: 12px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .cover p {
+            font-size: clamp(14px, 3vw, 18px);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            padding: 80px 20px 60px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
+        }
+        
+        .toc h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #2c3e50;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            animation: fadeInUp 0.6s ease both;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .toc-item:nth-child(1) { animation-delay: 0.1s; }
+        .toc-item:nth-child(2) { animation-delay: 0.2s; }
+        .toc-item:nth-child(3) { animation-delay: 0.3s; }
+        .toc-item:nth-child(4) { animation-delay: 0.4s; }
+        .toc-item:nth-child(5) { animation-delay: 0.5s; }
+        .toc-item:nth-child(6) { animation-delay: 0.6s; }
+        .toc-item:nth-child(7) { animation-delay: 0.7s; }
+        .toc-item:nth-child(8) { animation-delay: 0.8s; }
+        .toc-item:nth-child(9) { animation-delay: 0.9s; }
+        .toc-item:nth-child(10) { animation-delay: 1s; }
+        
+        .toc-item:hover {
+            transform: translateX(10px);
+            border-bottom-color: #d4af37;
+        }
+        
+        .toc-number {
+            font-size: clamp(24px, 4vw, 32px);
+            color: #d4af37;
+            margin-right: 15px;
+        }
+        
+        .toc-title {
+            flex: 1;
+            font-size: clamp(12px, 2vw, 16px);
+            letter-spacing: 2px;
+        }
+        
+        .toc-page {
+            font-size: clamp(12px, 2vw, 16px);
+            color: #888;
+        }
+        
+        /* Introduction Page */
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        
+        .intro-image {
+            background: url('https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .intro-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, transparent 0%, rgba(245,245,245,0.3) 100%);
+        }
+        
+        .intro-text {
+            padding: clamp(40px, 8vw, 80px) clamp(30px, 6vw, 60px);
+            background: #f5f5f5;
+            animation: slideInRight 1s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .intro-text h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            color: #2c3e50;
+        }
+        
+        .intro-text p {
+            font-size: clamp(13px, 2vw, 14px);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+            color: #555;
+        }
+        
+        /* Product Pages */
+        .product-page {
+            padding: 80px 20px 60px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+        }
+        
+        .product-page h2 {
+            font-size: clamp(32px, 5vw, 42px);
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #2c3e50;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-item {
+            border: 1px solid #e0e0e0;
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease both;
+            cursor: pointer;
+        }
+        
+        .product-item:nth-child(1) { animation-delay: 0.1s; }
+        .product-item:nth-child(2) { animation-delay: 0.2s; }
+        .product-item:nth-child(3) { animation-delay: 0.3s; }
+        .product-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #f0f0f0;
+            transition: transform 0.4s ease;
+        }
+        
+        .product-item:hover .product-image {
+            transform: scale(1.1);
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-item h3 {
+            font-size: clamp(18px, 3vw, 20px);
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .product-item p {
+            font-size: clamp(12px, 2vw, 13px);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .product-specs {
+            margin-top: 15px;
+            font-size: clamp(11px, 2vw, 12px);
+            color: #888;
+        }
+        
+        .product-specs p {
+            margin-bottom: 5px;
+        }
+        
+        .product-specs strong {
+            color: #d4af37;
+        }
+        
+        /* Image Slider Modal */
+        .slider-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .slider-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomInModal 0.3s ease;
+        }
+        
+        @keyframes zoomInModal {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .slider-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .slider-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .slider-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .slider-prev, .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.8);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-prev:hover, .slider-next:hover {
+            background: rgba(212, 175, 55, 1);
+            padding: 20px 30px;
+        }
+        
+        .slider-prev {
+            left: -60px;
+        }
+        
+        .slider-next {
+            right: -60px;
+        }
+        
+        .slider-caption {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+        
+        /* Contact Page */
+        .contact {
+            background: linear-gradient(135deg, #1e3a3a 0%, #2d5555 100%);
+            color: white;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80') center/cover;
+            opacity: 0.1;
+            animation: zoomIn 20s infinite alternate;
+        }
+        
+        .contact h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 300;
+            margin-bottom: 50px;
+            color: #d4af37;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+            text-align: center;
+        }
+        
+        .contact-info {
+            font-size: clamp(14px, 2.5vw, 16px);
+            line-height: 2;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .contact-info p {
+            margin-bottom: 20px;
+            animation: fadeInLeft 0.8s ease both;
+        }
+        
+        .contact-info p:nth-child(1) { animation-delay: 0.2s; }
+        .contact-info p:nth-child(2) { animation-delay: 0.4s; }
+        .contact-info p:nth-child(3) { animation-delay: 0.6s; }
+        .contact-info p:nth-child(4) { animation-delay: 0.8s; }
+        .contact-info p:nth-child(5) { animation-delay: 1s; }
+        
+        @keyframes fadeInLeft {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .contact-info strong {
+            color: #d4af37;
+            display: inline-block;
+            min-width: 100px;
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #d4af37;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .nav-center {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: rgba(30, 58, 58, 0.98);
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                transition: left 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                z-index: 999;
+            }
+            
+            .nav-center.active {
+                left: 0;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-social {
+                justify-content: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(212, 175, 55, 0.3);
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .intro {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-image {
+                min-height: 300px;
+            }
+            
+            .slider-prev {
+                left: 10px;
+            }
+            
+            .slider-next {
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .page {
+                margin: 0;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+        
+        @media print {
+            .navbar,
+            .hamburger,
+            .scroll-top,
+            .slider-modal {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <div class="nav-logo-icon">M</div>
+                <span>MAVRON</span>
+            </a>
+            <div class="nav-center" id="navCenter">
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#introduction">About</a></li>
+                    <li><a href="#mirrors">Mirrors</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-social">
+                    <a href="https://instagram.com/mavronbathrooms" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="mailto:info@mavronbathrooms.com" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Image Slider Modal -->
+    <div class="slider-modal" id="sliderModal">
+        <div class="slider-container">
+            <button class="slider-close" id="sliderClose">&times;</button>
+            <button class="slider-prev" id="sliderPrev">&#10094;</button>
+            <img src="" alt="" class="slider-image" id="sliderImage">
+            <button class="slider-next" id="sliderNext">&#10095;</button>
+            <div class="slider-caption" id="sliderCaption"></div>
+        </div>
+    </div>
+
+    <!-- Page 1: Cover -->
+    <div class="page cover" id="home">
+        <div class="logo">M</div>
+        <h1>MAVRON</h1>
+        <p>LUXURY BATHROOM ELEGANCE</p>
+    </div>
+
+    <!-- Page 2: Table of Contents -->
+    <div class="page toc">
+        <h2>TABLE OF CONTENTS</h2>
+        <div class="toc-list">
+            <div class="toc-item" onclick="location.href='#introduction'">
+                <span class="toc-number">01</span>
+                <span class="toc-title">TIMELESS ELEGANCE FOR YOUR BATHROOM</span>
+                <span class="toc-page">03</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#trending'">
+                <span class="toc-number">02</span>
+                <span class="toc-title">TRENDING PRODUCTS</span>
+                <span class="toc-page">04-05</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#deals'">
+                <span class="toc-number">03</span>
+                <span class="toc-title">HOT DEALS</span>
+                <span class="toc-page">06</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#mirrors'">
+                <span class="toc-number">04</span>
+                <span class="toc-title">LED MIRRORS</span>
+                <span class="toc-page">07-08</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#furnishings'">
+                <span class="toc-number">05</span>
+                <span class="toc-title">GRACEFUL FURNISHINGS</span>
+                <span class="toc-page">09</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#faucets'">
+                <span class="toc-number">06</span>
+                <span class="toc-title">BY FAUCETS</span>
+                <span class="toc-page">10-11</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#golden'">
+                <span class="toc-number">07</span>
+                <span class="toc-title">GOLDEN FINISHES</span>
+                <span class="toc-page">12</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#shower'">
+                <span class="toc-number">08</span>
+                <span class="toc-title">PREMIUM SHOWER SYSTEM</span>
+                <span class="toc-page">13-14</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#accessories'">
+                <span class="toc-number">09</span>
+                <span class="toc-title">ACCESSORIES</span>
+                <span class="toc-page">15-16</span>
+            </div>
+            <div class="toc-item" onclick="location.href='#contact'">
+                <span class="toc-number">10</span>
+                <span class="toc-title">OUR CONTACT</span>
+                <span class="toc-page">17</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Introduction -->
+    <div class="page intro" id="introduction">
+        <div class="intro-image"></div>
+        <div class="intro-text">
+            <h2>Timeless Elegance<br>for Your Bathroom</h2>
+            <p>Welcome to Mavron, where luxury meets functionality in every detail of bathroom design. Our collection represents the pinnacle of craftsmanship, combining timeless elegance with modern innovation.</p>
+            <p>At Mavron, we believe that your bathroom should be more than just a functional space—it should be a sanctuary of comfort and style. Each piece in our collection is carefully selected to bring sophistication and grace to your daily routine.</p>
+            <p>From our exquisite LED mirrors that illuminate your space with perfect clarity to our premium shower systems that transform your bathing experience, every product embodies our commitment to quality and design excellence.</p>
+            <p>Our faucets showcase the finest finishes, including luxurious golden accents that add a touch of opulence. The graceful furnishings complement any bathroom aesthetic, whether contemporary or classic.</p>
+            <p>Discover the Mavron difference—where every detail matters, and every product is designed to elevate your bathroom into a space of refined beauty and lasting quality.</p>
+        </div>
+    </div>
+
+    <!-- Page 4: Trending Products -->
+    <div class="page product-page" id="trending">
+        <h2>Trending Products</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Monaco LED Mirror" class="product-image">
+                <div class="product-content">
+                    <h3>Monaco LED Mirror</h3>
+                    <p>Elegant rectangular LED mirror with touch sensor control and anti-fog technology. Features adjustable color temperature for perfect lighting in any setting.</p>
+                    <div class="product-specs">
+                        <p><strong>Dimensions:</strong> 800 x 600mm</p>
+                        <p><strong>Features:</strong> Touch Control, Anti-fog, Adjustable Temperature</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Venetian Vanity Set" class="product-image">
+                <div class="product-content">
+                    <h3>Venetian Vanity Set</h3>
+                    <p>Sophisticated wall-mounted vanity with soft-close drawers and integrated lighting. Combines storage functionality with sleek modern design.</p>
+                    <div class="product-specs">
+                        <p><strong>Dimensions:</strong> 1200 x 500 x 450mm</p>
+                        <p><strong>Features:</strong> Soft-close, Integrated Lighting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80" alt="Aurora Freestanding Tub" class="product-image">
+                <div class="product-content">
+                    <h3>Aurora Freestanding Tub</h3>
+                    <p>Luxurious freestanding bathtub crafted from premium acrylic. Ergonomic design provides ultimate comfort and visual appeal.</p>
+                    <div class="product-specs">
+                        <p><strong>Dimensions:</strong> 1700 x 750 x 580mm</p>
+                        <p><strong>Material:</strong> Premium Acrylic</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Cascade Rainfall Shower" class="product-image">
+                <div class="product-content">
+                    <h3>Cascade Rainfall Shower</h3>
+                    <p>Premium shower head with rainfall and massage spray options. Brushed nickel finish adds contemporary elegance.</p>
+                    <div class="product-specs">
+                        <p><strong>Features:</strong> Dual Function, Water-saving</p>
+                        <p><strong>Finish:</strong> Brushed Nickel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: More Products -->
+    <div class="page product-page">
+        <h2>More Products</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Imperial Wall Mounted Faucet" class="product-image">
+                <div class="product-content">
+                    <h3>Imperial Wall Mounted Faucet</h3>
+                    <p>Stunning wall-mounted faucet with cross handles and elegant spout design. Available in multiple premium finishes.</p>
+                    <div class="product-specs">
+                        <p><strong>Finishes:</strong> Chrome, Gold, Matte Black</p>
+                        <p><strong>Installation:</strong> Wall-mounted</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1594026112236-02c4bb3ce8e7?w=600&q=80" alt="Crystal Glass Vessel Sink" class="product-image">
+                <div class="product-content">
+                    <h3>Crystal Glass Vessel Sink</h3>
+                    <p>Handcrafted glass vessel sink that serves as a centerpiece. Each piece is unique with artistic patterns.</p>
+                    <div class="product-specs">
+                        <p><strong>Material:</strong> Tempered Glass</p>
+                        <p><strong>Dimensions:</strong> 420mm diameter</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=600&q=80" alt="Platinum Towel Warmer" class="product-image">
+                <div class="product-content">
+                    <h3>Platinum Towel Warmer</h3>
+                    <p>Wall-mounted heated towel rail with programmable timer. Combines functionality with refined aesthetics.</p>
+                    <div class="product-specs">
+                        <p><strong>Power:</strong> 150W</p>
+                        <p><strong>Features:</strong> Timer, Temperature Control</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1595514535116-9e0be5fa83e6?w=600&q=80" alt="Sapphire Shower Panel" class="product-image">
+                <div class="product-content">
+                    <h3>Sapphire Shower Panel</h3>
+                    <p>Multi-function shower panel system with body jets and thermostatic control for ultimate shower experience.</p>
+                    <div class="product-specs">
+                        <p><strong>Features:</strong> Body Jets, Thermostatic</p>
+                        <p><strong>Finish:</strong> Stainless Steel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Hot Deals -->
+    <div class="page product-page" id="deals">
+        <h2>Hot Deals</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&q=80" alt="Classic Basin Mixer" class="product-image">
+                <div class="product-content">
+                    <h3>Classic Basin Mixer - Special Offer</h3>
+                    <p>Premium quality basin mixer with ceramic cartridge. Limited time offer on our most popular finish options.</p>
+                    <div class="product-specs">
+                        <p><strong>Original Price:</strong> $299</p>
+                        <p><strong>Sale Price:</strong> $199</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="LED Mirror Bundle" class="product-image">
+                <div class="product-content">
+                    <h3>LED Mirror Bundle</h3>
+                    <p>Complete mirror package with installation kit and warranty. Save when you buy the complete set.</p>
+                    <div class="product-specs">
+                        <p><strong>Bundle Price:</strong> $449</p>
+                        <p><strong>Save:</strong> $150</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1564540574859-0dfb1d5e8bfc?w=600&q=80" alt="Bathroom Accessory Set" class="product-image">
+                <div class="product-content">
+                    <h3>Bathroom Accessory Set</h3>
+                    <p>Five-piece accessory collection in matching finish. Everything you need for a coordinated look.</p>
+                    <div class="product-specs">
+                        <p><strong>Includes:</strong> Towel Bar, Ring, Hook, Paper Holder, Robe Hook</p>
+                        <p><strong>Set Price:</strong> $279</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Shower System Package" class="product-image">
+                <div class="product-content">
+                    <h3>Shower System Package</h3>
+                    <p>Complete shower solution with valve, head, and hand shower. Professional installation available.</p>
+                    <div class="product-specs">
+                        <p><strong>Package Price:</strong> $599</p>
+                        <p><strong>Save:</strong> $200</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 7: LED Mirrors -->
+    <div class="page product-page" id="mirrors">
+        <h2>LED Mirrors</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Infinity Edge LED Mirror" class="product-image">
+                <div class="product-content">
+                    <h3>Infinity Edge LED Mirror</h3>
+                    <p>Frameless LED mirror with infinity edge lighting effect. Creates stunning visual ambiance with energy-efficient LEDs.</p>
+                    <div class="product-specs">
+                        <p><strong>Sizes Available:</strong> 600mm, 800mm, 1000mm</p>
+                        <p><strong>Features:</strong> Infinity Edge, Demister</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?w=600&q=80" alt="Smart Touch LED Mirror" class="product-image">
+                <div class="product-content">
+                    <h3>Smart Touch LED Mirror</h3>
+                    <p>Advanced mirror with touch controls, dimming function, and color temperature adjustment. Includes Bluetooth connectivity.</p>
+                    <div class="product-specs">
+                        <p><strong>Technology:</strong> Smart Touch, Bluetooth</p>
+                        <p><strong>Lighting:</strong> 3000K-6000K Adjustable</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Backlit Rectangular Mirror" class="product-image">
+                <div class="product-content">
+                    <h3>Backlit Rectangular Mirror</h3>
+                    <p>Classic rectangular mirror with elegant backlit design. Perfect balance of form and function.</p>
+                    <div class="product-specs">
+                        <p><strong>Dimensions:</strong> 1200 x 700mm</p>
+                        <p><strong>Features:</strong> Backlit, Anti-fog</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=600&q=80" alt="Round Illuminated Mirror" class="product-image">
+                <div class="product-content">
+                    <h3>Round Illuminated Mirror</h3>
+                    <p>Contemporary round mirror with perimeter LED lighting. Adds modern sophistication to any bathroom.</p>
+                    <div class="product-specs">
+                        <p><strong>Diameter:</strong> 600mm, 800mm</p>
+                        <p><strong>Features:</strong> Perimeter LED, Touch Sensor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 8: LED Mirror Features -->
+    <div class="page product-page">
+        <h2>LED Mirror Features</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80" alt="Anti-Fog Technology" class="product-image">
+                <div class="product-content">
+                    <h3>Anti-Fog Technology</h3>
+                    <p>Our premium anti-fog feature ensures crystal-clear reflection even in steamy bathroom conditions. Automatically activates with mirror lighting.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Color Temperature Control" class="product-image">
+                <div class="product-content">
+                    <h3>Color Temperature Control</h3>
+                    <p>Adjust between warm, natural, and cool white lighting to suit your needs. Perfect for makeup application or ambient lighting.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=600&q=80" alt="Energy Efficient LEDs" class="product-image">
+                <div class="product-content">
+                    <h3>Energy Efficient LEDs</h3>
+                    <p>Long-lasting LED technology provides up to 50,000 hours of illumination while consuming minimal energy. Environmentally conscious luxury.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Touch Sensor Controls" class="product-image">
+                <div class="product-content">
+                    <h3>Touch Sensor Controls</h3>
+                    <p>Intuitive touch controls allow easy operation. Simply touch the sensor area to power on/off and adjust settings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 9: Graceful Furnishings -->
+    <div class="page product-page" id="furnishings">
+        <h2>Graceful Furnishings</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Floating Vanity Cabinet" class="product-image">
+                <div class="product-content">
+                    <h3>Floating Vanity Cabinet</h3>
+                    <p>Wall-mounted vanity with seamless integration and ample storage. Clean lines and premium materials create timeless appeal.</p>
+                    <div class="product-specs">
+                        <p><strong>Sizes:</strong> 800mm, 1000mm, 1200mm</p>
+                        <p><strong>Material:</strong> Solid Wood, Waterproof Finish</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=600&q=80" alt="Marble Top Vanity" class="product-image">
+                <div class="product-content">
+                    <h3>Marble Top Vanity</h3>
+                    <p>Luxurious vanity featuring genuine marble countertop. Combines natural beauty with practical functionality.</p>
+                    <div class="product-specs">
+                        <p><strong>Top Material:</strong> Genuine Marble</p>
+                        <p><strong>Colors:</strong> Carrara White, Calacatta Gold</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80" alt="Contemporary Storage Tower" class="product-image">
+                <div class="product-content">
+                    <h3>Contemporary Storage Tower</h3>
+                    <p>Tall storage cabinet with adjustable shelves and soft-close doors. Maximizes vertical space elegantly.</p>
+                    <div class="product-specs">
+                        <p><strong>Height:</strong> 1800mm</p>
+                        <p><strong>Features:</strong> Adjustable Shelves, Soft-close</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Designer Medicine Cabinet" class="product-image">
+                <div class="product-content">
+                    <h3>Designer Medicine Cabinet</h3>
+                    <p>Recessed medicine cabinet with mirror front and organized interior. Seamlessly integrates into wall space.</p>
+                    <div class="product-specs">
+                        <p><strong>Installation:</strong> Recessed or Surface Mount</p>
+                        <p><strong>Interior:</strong> Adjustable Glass Shelves</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 10: By Faucets -->
+    <div class="page product-page" id="faucets">
+        <h2>By Faucets</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Waterfall Basin Faucet" class="product-image">
+                <div class="product-content">
+                    <h3>Waterfall Basin Faucet</h3>
+                    <p>Stunning waterfall spout design creates cascading water effect. Modern aesthetic meets practical functionality.</p>
+                    <div class="product-specs">
+                        <p><strong>Type:</strong> Single Handle</p>
+                        <p><strong>Finish Options:</strong> Chrome, Brushed Nickel, Matte Black</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&q=80" alt="Bridge Kitchen Faucet" class="product-image">
+                <div class="product-content">
+                    <h3>Bridge Kitchen Faucet</h3>
+                    <p>Classic bridge design with modern performance. Perfect blend of traditional style and contemporary convenience.</p>
+                    <div class="product-specs">
+                        <p><strong>Features:</strong> Pull-down Spray, Ceramic Valve</p>
+                        <p><strong>Reach:</strong> 9 inches</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Wall Mount Tub Filler" class="product-image">
+                <div class="product-content">
+                    <h3>Wall Mount Tub Filler</h3>
+                    <p>Elegant wall-mounted tub faucet with hand shower. Creates dramatic focal point in bathroom.</p>
+                    <div class="product-specs">
+                        <p><strong>Installation:</strong> Wall-mounted</p>
+                        <p><strong>Includes:</strong> Hand Shower, Diverter</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Vessel Sink Faucet" class="product-image">
+                <div class="product-content">
+                    <h3>Vessel Sink Faucet</h3>
+                    <p>Tall profile faucet designed specifically for vessel sinks. Extended height provides proper clearance and style.</p>
+                    <div class="product-specs">
+                        <p><strong>Height:</strong> 12 inches</p>
+                        <p><strong>Control:</strong> Single Lever</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 11: Faucet Finishes -->
+    <div class="page product-page">
+        <h2>Faucet Finishes & Features</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Chrome Finish" class="product-image">
+                <div class="product-content">
+                    <h3>Chrome Finish</h3>
+                    <p>Classic polished chrome provides brilliant shine and timeless appeal. Highly durable and resistant to tarnishing.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="Brushed Nickel" class="product-image">
+                <div class="product-content">
+                    <h3>Brushed Nickel</h3>
+                    <p>Sophisticated brushed texture resists water spots and fingerprints. Contemporary look with low maintenance.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80" alt="Matte Black" class="product-image">
+                <div class="product-content">
+                    <h3>Matte Black</h3>
+                    <p>Bold modern statement in matte black finish. Creates striking contrast and dramatic visual impact.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Oil Rubbed Bronze" class="product-image">
+                <div class="product-content">
+                    <h3>Oil Rubbed Bronze</h3>
+                    <p>Warm bronze tones with living finish that develops character over time. Traditional elegance with rustic charm.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 12: Golden Finishes -->
+    <div class="page product-page" id="golden">
+        <h2>Golden Finishes</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Polished Gold" class="product-image">
+                <div class="product-content">
+                    <h3>Polished Gold</h3>
+                    <p>Luxurious polished gold finish adds opulent glamour to any bathroom. Mirror-like shine creates dazzling effect.</p>
+                    <div class="product-specs">
+                        <p><strong>Style:</strong> High Gloss</p>
+                        <p><strong>Maintenance:</strong> Regular cleaning recommended</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Brushed Gold" class="product-image">
+                <div class="product-content">
+                    <h3>Brushed Gold</h3>
+                    <p>Refined brushed gold texture offers subtle sophistication. Resists fingerprints while maintaining luxurious appearance.</p>
+                    <div class="product-specs">
+                        <p><strong>Style:</strong> Satin Finish</p>
+                        <p><strong>Durability:</strong> Scratch-resistant</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&q=80" alt="Rose Gold" class="product-image">
+                <div class="product-content">
+                    <h3>Rose Gold</h3>
+                    <p>Contemporary rose gold finish brings warmth and modern elegance. Perfect for creating unique bathroom aesthetic.</p>
+                    <div class="product-specs">
+                        <p><strong>Style:</strong> Warm Metallic</p>
+                        <p><strong>Trend:</strong> Modern Luxury</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Champagne Bronze" class="product-image">
+                <div class="product-content">
+                    <h3>Champagne Bronze</h3>
+                    <p>Sophisticated champagne bronze combines gold and bronze tones. Versatile finish complements various design styles.</p>
+                    <div class="product-specs">
+                        <p><strong>Style:</strong> Mixed Metal</p>
+                        <p><strong>Versatility:</strong> Traditional to Modern</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 13: Premium Shower System -->
+    <div class="page product-page" id="shower">
+        <h2>Premium Shower System</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Thermostatic Shower System" class="product-image">
+                <div class="product-content">
+                    <h3>Thermostatic Shower System</h3>
+                    <p>Advanced thermostatic valve maintains consistent water temperature. Includes rainfall head and handheld shower.</p>
+                    <div class="product-specs">
+                        <p><strong>Features:</strong> Temperature Control, Anti-scald</p>
+                        <p><strong>Components:</strong> Valve, Rainfall Head, Hand Shower</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1595514535116-9e0be5fa83e6?w=600&q=80" alt="Luxury Rain Shower" class="product-image">
+                <div class="product-content">
+                    <h3>Luxury Rain Shower</h3>
+                    <p>Extra-large rainfall showerhead creates spa-like experience. Full coverage spray pattern for ultimate relaxation.</p>
+                    <div class="product-specs">
+                        <p><strong>Size:</strong> 12-inch Square</p>
+                        <p><strong>Flow Rate:</strong> 2.5 GPM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Multi-Function Shower Panel" class="product-image">
+                <div class="product-content">
+                    <h3>Multi-Function Shower Panel</h3>
+                    <p>Complete shower tower with multiple spray functions and body jets. All-in-one luxury shower experience.</p>
+                    <div class="product-specs">
+                        <p><strong>Jets:</strong> 6 Body Jets</p>
+                        <p><strong>Functions:</strong> Rain, Massage, Mist</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=600&q=80" alt="Digital Shower System" class="product-image">
+                <div class="product-content">
+                    <h3>Digital Shower System</h3>
+                    <p>Smart digital controls allow precise temperature and flow adjustment. LED display shows real-time information.</p>
+                    <div class="product-specs">
+                        <p><strong>Control:</strong> Digital Touch Panel</p>
+                        <p><strong>Display:</strong> LED Temperature Display</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 14: Shower Features -->
+    <div class="page product-page">
+        <h2>Shower Features</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80" alt="Ceiling Mounted Installation" class="product-image">
+                <div class="product-content">
+                    <h3>Ceiling Mounted Installation</h3>
+                    <p>Ceiling-mounted showerheads create clean, minimal aesthetic. Rain falls naturally from above for spa experience.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Hand Shower with Slide Bar" class="product-image">
+                <div class="product-content">
+                    <h3>Hand Shower with Slide Bar</h3>
+                    <p>Adjustable slide bar allows customized height positioning. Perfect flexibility for all family members.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1595514535116-9e0be5fa83e6?w=600&q=80" alt="Water Saving Technology" class="product-image">
+                <div class="product-content">
+                    <h3>Water Saving Technology</h3>
+                    <p>Eco-friendly aerator technology reduces water consumption without sacrificing pressure. Sustainable luxury for conscious consumers.</p>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Easy Clean Nozzles" class="product-image">
+                <div class="product-content">
+                    <h3>Easy Clean Nozzles</h3>
+                    <p>Silicone spray nozzles prevent lime buildup. Simple wipe-clean maintenance keeps shower performing optimally.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 15: Accessories -->
+    <div class="page product-page" id="accessories">
+        <h2>Accessories</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1564540574859-0dfb1d5e8bfc?w=600&q=80" alt="Towel Bar Collection" class="product-image">
+                <div class="product-content">
+                    <h3>Towel Bar Collection</h3>
+                    <p>Premium towel bars in various lengths. Solid brass construction with coordinating finish options.</p>
+                    <div class="product-specs">
+                        <p><strong>Lengths:</strong> 18", 24", 30"</p>
+                        <p><strong>Material:</strong> Solid Brass</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Robe Hook Set" class="product-image">
+                <div class="product-content">
+                    <h3>Robe Hook Set</h3>
+                    <p>Elegant robe hooks with concealed mounting hardware. Strong hold with sophisticated design.</p>
+                    <div class="product-specs">
+                        <p><strong>Capacity:</strong> 10 lbs per hook</p>
+                        <p><strong>Installation:</strong> Wall-mounted</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Paper Holder" class="product-image">
+                <div class="product-content">
+                    <h3>Paper Holder</h3>
+                    <p>Stylish toilet paper holder with covered or open design options. Matches all Mavron accessory collections.</p>
+                    <div class="product-specs">
+                        <p><strong>Types:</strong> Open, Covered</p>
+                        <p><strong>Finish:</strong> All standard finishes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Soap Dispenser" class="product-image">
+                <div class="product-content">
+                    <h3>Soap Dispenser</h3>
+                    <p>Counter or wall-mounted soap dispenser in coordinating finish. Large capacity pump mechanism.</p>
+                    <div class="product-specs">
+                        <p><strong>Capacity:</strong> 12 oz</p>
+                        <p><strong>Mounting:</strong> Counter or Wall</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 16: More Accessories -->
+    <div class="page product-page">
+        <h2>Our Mirrors</h2>
+        <div class="product-grid">
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=600&q=80" alt="Towel Ring" class="product-image">
+                <div class="product-content">
+                    <h3>Towel Ring</h3>
+                    <p>Classic towel ring design for hand towels. Perfect for powder rooms and guest bathrooms.</p>
+                    <div class="product-specs">
+                        <p><strong>Diameter:</strong> 8 inches</p>
+                        <p><strong>Style:</strong> Open Ring</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="Toilet Brush Holder" class="product-image">
+                <div class="product-content">
+                    <h3>Toilet Brush Holder</h3>
+                    <p>Discreet toilet brush holder with removable drip cup. Sleek design maintains bathroom elegance.</p>
+                    <div class="product-specs">
+                        <p><strong>Features:</strong> Removable Drip Cup</p>
+                        <p><strong>Finish:</strong> Matching Collection</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1564540574859-0dfb1d5e8bfc?w=600&q=80" alt="Double Towel Bar" class="product-image">
+                <div class="product-content">
+                    <h3>Double Towel Bar</h3>
+                    <p>Double towel bar maximizes hanging space. Ideal for master bathrooms with limited wall space.</p>
+                    <div class="product-specs">
+                        <p><strong>Configuration:</strong> Double Bar</p>
+                        <p><strong>Length:</strong> 24 inches</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" onclick="openSlider(this)">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Flexible Mirror" class="product-image">
+                <div class="product-content">
+                    <h3>Neck Flexible Mirror</h3>
+                    <p>Adjustable magnifying mirror with flexible neck. Perfect for detailed grooming and makeup application.</p>
+                    <div class="product-specs">
+                        <p><strong>Magnification:</strong> 5x, 7x, 10x options</p>
+                        <p><strong>Mounting:</strong> Wall-mounted</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 17: Contact -->
+    <div class="page contact" id="contact">
+        <h2>Our Contact</h2>
+        <div class="contact-info">
+            <p><strong>Address:</strong> Mavron Luxury Bathrooms, 123 Design Boulevard, Suite 456, New York, NY 10001</p>
+            <p><strong>Phone:</strong> +1 (800) 555-MAVRON<br>
+               +1 (800) 555-6287</p>
+            <p><strong>Email:</strong> info@mavronbathrooms.com<br>
+               sales@mavronbathrooms.com</p>
+            <p><strong>Website:</strong> www.MavronLuxuryBathrooms.com</p>
+            <p><strong>Hours:</strong> Monday - Friday: 9:00 AM - 6:00 PM<br>
+               Saturday: 10:00 AM - 4:00 PM<br>
+               Sunday: Closed</p>
+            <p style="margin-top: 40px; font-style: italic; color: #d4af37;">
+                Follow us on social media for design inspiration and exclusive offers:<br>
+                @MavronBathrooms
+            </p>
+        </div>
+    </div>
+
+    <!-- Back Cover -->
+    <div class="page cover">
+        <div class="logo">M</div>
+        <h1>MAVRON</h1>
+        <p>WHERE LUXURY MEETS FUNCTION</p>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navCenter = document.getElementById('navCenter');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navCenter.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navCenter.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Image Slider Modal
+        const sliderModal = document.getElementById('sliderModal');
+        const sliderImage = document.getElementById('sliderImage');
+        const sliderCaption = document.getElementById('sliderCaption');
+        const sliderClose = document.getElementById('sliderClose');
+        const sliderPrev = document.getElementById('sliderPrev');
+        const sliderNext = document.getElementById('sliderNext');
+
+        let currentImageIndex = 0;
+        let allImages = [];
+
+        // Collect all product images
+        function collectImages() {
+            allImages = [];
+            document.querySelectorAll('.product-item').forEach(item => {
+                const img = item.querySelector('.product-image');
+                const title = item.querySelector('h3').textContent;
+                allImages.push({
+                    src: img.src,
+                    alt: img.alt,
+                    title: title
+                });
+            });
+        }
+
+        function openSlider(productItem) {
+            collectImages();
+            const img = productItem.querySelector('.product-image');
+            const title = productItem.querySelector('h3').textContent;
+            
+            currentImageIndex = allImages.findIndex(item => item.src === img.src);
+            
+            sliderImage.src = img.src;
+            sliderImage.alt = img.alt;
+            sliderCaption.textContent = title;
+            sliderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSlider() {
+            sliderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % allImages.length;
+            updateSliderImage();
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+            updateSliderImage();
+        }
+
+        function updateSliderImage() {
+            const currentImage = allImages[currentImageIndex];
+            sliderImage.src = currentImage.src;
+            sliderImage.alt = currentImage.alt;
+            sliderCaption.textContent = currentImage.title;
+        }
+
+        sliderClose.addEventListener('click', closeSlider);
+        sliderNext.addEventListener('click', showNextImage);
+        sliderPrev.addEventListener('click', showPrevImage);
+
+        // Close modal when clicking outside the image
+        sliderModal.addEventListener('click', (e) => {
+            if (e.target === sliderModal) {
+                closeSlider();
+            }
+        });
+
+        // Keyboard navigation for slider
+        document.addEventListener('keydown', (e) => {
+            if (sliderModal.classList.contains('active')) {
+                if (e.key === 'Escape') closeSlider();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'ArrowLeft') showPrevImage();
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all product items and sections
+        document.querySelectorAll('.product-item, .intro-text, .toc-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize
+        collectImages();
+    </script>
+</body>
+</html>
